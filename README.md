@@ -36,7 +36,7 @@ Our first series, **30 Days of LLMs**, introduces one concept at a time. Each le
 | Day | Topic | Availability |
 | :---: | --- | --- |
 | **01** | [What is an LLM — and how does ChatGPT work?](./day/1/) | Notes available in this repository |
-| **02** | What exactly is a token? | Coming soon |
+| **02** | [What exactly is a token?](./day/2/) | Notes available in this repository |
 | **03–30** | More beginner-friendly AI lessons | Planned; released after editorial review |
 
 **Day 1 covers:** language patterns, a simplified “Twinkle, twinkle…” analogy, tokenisation, next-token generation and why confident AI answers can still be incorrect.
@@ -56,8 +56,10 @@ Our first series, **30 Days of LLMs**, introduces one concept at a time. Each le
 beyond-ai-with-laki-learning/
 ├── index.html           # Learning Library homepage
 ├── day/
-│   └── 1/
-│       └── index.html   # Day 1 lesson and quiz
+│   ├── 1/
+│   │   └── index.html   # Day 1 lesson and quiz
+│   └── 2/
+│       └── index.html   # Day 2 lesson and quiz
 ├── styles.css           # Responsive design system
 ├── _headers             # Security-related response headers
 └── README.md
