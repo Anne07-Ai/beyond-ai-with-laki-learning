@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 02: What exactly is a token? | Beyond AI with Laki</title>
+<meta name="description" content="Free beginner-friendly notes: what tokens are, how text is split, how ChatGPT uses tokens, and what a context window is.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav>
+<a class="brand" href="/">BEYOND AI WITH LAKI</a>
+<a class="nav-link" href="/">← Library</a>
+</nav>
+<main>
+<div class="note-layout">
+<article class="notes-content" id="notes">
+<div class="eyebrow">30 DAYS OF LLMs · DAY 02</div>
+<h1>What exactly is a token?</h1><p class="tag">Illustrated learning guide · Concepts + diagrams + interview questions</p>
+<p class="lead">The small pieces of text that language models read and write.</p>
+<div class="info">
+<strong>One-minute takeaway:</strong> Language models don't read text word by word the way we do. They work with <strong>tokens</strong>: small pieces of text that can be a whole word, part of a word or a punctuation mark. Tokens are the building blocks that language models use to process and generate text.</div>
+
+<h2>1. Think of building blocks</h2>
+<p>Imagine building something with Lego blocks. An AI model doesn't handle a whole sentence in one go. It works with smaller pieces of text, and those pieces are called <strong>tokens</strong>. This is a <em>simplified analogy</em> to make the idea easier to picture.</p>
+
+<h2>2. An example</h2>
+<p>A tokenizer might split <strong>“I love chocolate”</strong> into three tokens:</p>
+<div class="flow" aria-label="Illustrative split of I love chocolate into three tokens">
+<span class="step">I</span>
+<span class="step">␣love</span>
+<span class="step">␣chocolate</span>
+</div>
+<p>The <strong>␣</strong> marks a space. Many tokenizers keep the space in front of a word as part of the token.</p>
+
+<h2>3. One token isn't always one word</h2>
+<p>Here's the surprising part:</p>
+<ul>
+<li>A <strong>long or less common word</strong> can be split into smaller, more common pieces. For example, <em>annoyingly</em> might become <strong>annoying</strong> + <strong>ly</strong>.</li>
+<li><strong>Punctuation</strong> such as <strong>?</strong> or <strong>.</strong> can be a token of its own.</li>
+<li><strong>The exact split depends on the model's tokenizer.</strong> Different models can split the same text differently.</li>
+</ul>
+<div class="info">
+<strong>Note:</strong> The splits on this page are illustrative. Real splits depend on the tokenizer. Inside the model, each token is stored as a number, not as letters.</div>
+
+<h2>4. Why does this matter?</h2>
+<p>Language models process tokens, not words exactly as we see them. When you ask ChatGPT a question, your text is converted into tokens. The model uses those tokens and the conversation so far to predict what comes next. It keeps generating tokens, one at a time, until it forms a response.</p>
+<div class="flow" aria-label="Simplified process from prompt to reply">
+<span class="step">Your text</span>
+<span class="arrow">→</span>
+<span class="step">Tokens</span>
+<span class="arrow">→</span>
+<span class="step">Context</span>
+<span class="arrow">→</span>
+<span class="step">Next token</span>
+<span class="arrow">→</span>
+<span class="step">Repeat</span>
+<span class="arrow">→</span>
+<span class="step">Reply</span>
+</div>
+<p>Token counts are not word counts. Long words can become several tokens and punctuation can be its own token, so a sentence often has more tokens than words.</p>
+
+<h2>5. The context window: the model's desk</h2>
+<p>Every model has a <strong>context window</strong>: a limit on how many tokens it can work with at once.</p>
+<p>Think of it like a desk. A bigger desk can hold more books and notes while you're working. A bigger context window can hold more information for the model to consider. The size varies from model to model.</p>
+
+<section class="lesson-extended" aria-labelledby="deeper"><h2 id="deeper">6. See the process: text to model input</h2><p>Think of a tokenizer as a bridge between human-readable text and the numbers a model operates on. The tokenizer divides text into units and looks up a <strong>token ID</strong> for each one. The model then represents those IDs as numerical vectors called <strong>embeddings</strong> and processes the sequence in context.</p>
+<figure class="diagram" aria-labelledby="pipeline-caption"><figcaption id="pipeline-caption"><strong>Diagram 1 — From a sentence to a model response</strong></figcaption><div class="diagram-flow"><span class="diagram-node text-node">“I love chocolate”<small>Human text</small></span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node pink-node">Tokenizer<small>Splits into pieces</small></span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node lavender-node">Token IDs<small>Numerical identifiers</small></span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node pink-node">Model<small>Embeddings + context</small></span><span class="diagram-arrow" aria-hidden="true">→</span><span class="diagram-node text-node">Next token<small>Repeated generation</small></span></div><p class="diagram-note">Simplified conceptual pipeline; not a depiction of any particular model's internal architecture.</p></figure>
+<h2>7. Why different tokenizers give different results</h2><p>The tokenizer's <strong>vocabulary</strong> is a set of pieces it knows. A frequent word might stay as one piece, while a less common word might be divided into multiple parts. Tokenizers do not all share the same vocabulary or splitting rules.</p>
+<figure class="diagram" aria-labelledby="split-caption"><figcaption id="split-caption"><strong>Diagram 2 — One word, two possible splits</strong></figcaption><div class="split-demo"><div class="split-row"><span class="split-label">Text</span><div class="token-set"><span class="token-piece original">annoyingly</span></div></div><div class="split-row"><span class="split-label">Tokenizer A</span><div class="token-set"><span class="token-piece">annoying</span><span class="token-piece">ly</span></div></div><div class="split-row"><span class="split-label">Tokenizer B</span><div class="token-set"><span class="token-piece alt">annoy</span><span class="token-piece alt">ing</span><span class="token-piece alt">ly</span></div></div></div><p class="diagram-note">Illustrative only; these are possible decompositions, not verified output of named model tokenizers. For real results, test the specific tokenizer.</p></figure>
+<p>Three important approaches are <strong>Byte Pair Encoding (BPE)</strong>, which merges frequent pairs; <strong>WordPiece</strong>, which uses a different scoring strategy for merging; and <strong>Unigram</strong>, which scores candidate pieces and selects a suitable segmentation. You do not need to memorise the algorithms for Day 2, but they explain why token boundaries can vary. See the Hugging Face reference below.</p>
+<h2>8. What is a context window?</h2><p>The <strong>context window</strong> is the amount of token-based information a model can consider within a request, including relevant conversation history and other input. The window is limited; as a conversation grows, applications may need to omit, summarise or retrieve information depending on their design. Do not assume a model remembers every earlier message forever.</p>
+<figure class="diagram" aria-labelledby="context-caption"><figcaption id="context-caption"><strong>Diagram 3 — The context desk analogy</strong></figcaption><div class="context-demo"><div class="context-desk"><span class="desk-item">Instructions</span><span class="desk-item">Your question</span><span class="desk-item">Relevant history</span><span class="desk-item">Documents</span></div><div class="desk-label">Limited context window</div><div class="desk-outside">Additional information may need retrieval, summarisation or omission</div></div><p class="diagram-note">Conceptual illustration. Actual token budgets and context-management behaviour depend on the model and application.</p></figure>
+<h2>9. Why token counts matter in real applications</h2><ul><li><strong>Costs:</strong> Many hosted LLM APIs charge for input and output tokens. Pricing and cached-token rules vary by model.</li><li><strong>Limits:</strong> Long prompts and large document inputs may exceed a model's or application's available token budget.</li><li><strong>Latency:</strong> Generating more output tokens usually takes more processing time.</li><li><strong>Prompt engineering:</strong> Concise, relevant context can be easier to manage than copying huge amounts of unrelated material.</li></ul>
+<p>For intuition only, an OpenAI guide uses roughly <strong>four English characters per token</strong> as a rough rule of thumb. This is <em>not an exact conversion</em> and should not be used as a technical guarantee for another language or tokenizer.</p>
+<div class="info"><strong>Try it yourself:</strong> Open the <a href="https://platform.openai.com/tokenizer" rel="noopener noreferrer">OpenAI Tokenizer</a> and try punctuation, a long word, and the same sentence with changed spacing or capitalisation. Compare the boundaries; do not assume those boundaries match every model.</div>
+</section>
+<h2 class="pagebreak">Knowledge check — quick quiz</h2>
+<ol class="quiz">
+<li>Is one token always one word?<br>
+<strong>Answer:</strong> No. A token can be a whole word, part of a word or a punctuation mark.</li>
+<li>Who decides how text is split into tokens?<br>
+<strong>Answer:</strong> The model's tokenizer. Different models can split the same text differently.</li>
+<li>What is a context window?<br>
+<strong>Answer:</strong> The limit on how many tokens a model can work with at once, like the size of a desk.</li>
+</ol>
+
+<section class="interview-section" aria-labelledby="interview-heading"><h2 id="interview-heading">Interview practice — beginner to AI engineer</h2><p>Use these as short speaking answers, then try explaining each concept in your own words. The final questions explore production implications rather than just definitions.</p>
+<div class="qa-list">
+<div class="qa-item"><h3>1. What is a token in an LLM?</h3><p><strong>Answer:</strong> A token is a unit of text the model processes. It can be a whole word, part of a word, punctuation or another character sequence, depending on the tokenizer.</p></div>
+<div class="qa-item"><h3>2. Is one token always equal to one word?</h3><p><strong>Answer:</strong> No. Tokenizers may keep a frequent word together or break a rarer word into multiple subwords. Spaces and punctuation also influence the split.</p></div>
+<div class="qa-item"><h3>3. What does a tokenizer do?</h3><p><strong>Answer:</strong> It applies the model's tokenisation rules to transform text into a sequence of pieces and associated numerical IDs. Decoding maps generated IDs back into readable text.</p></div>
+<div class="qa-item"><h3>4. What is the difference between a token ID and an embedding?</h3><p><strong>Answer:</strong> A token ID is a discrete index into the vocabulary. An embedding is a learned numerical vector representing that token for processing inside the model.</p></div>
+<div class="qa-item"><h3>5. What is subword tokenisation, and why use it?</h3><p><strong>Answer:</strong> It represents text using pieces that can be smaller than full words. This makes it practical to handle uncommon or newly formed words using reusable pieces instead of requiring a separate vocabulary entry for every word.</p></div>
+<div class="qa-item"><h3>6. How do BPE, WordPiece and Unigram differ?</h3><p><strong>Answer:</strong> BPE builds useful pieces by merging frequent pairs. WordPiece uses a different merge-scoring criterion. Unigram starts with candidate pieces and removes less useful ones according to a probabilistic model. They can create different splits.</p></div>
+<div class="qa-item"><h3>7. What is a context window?</h3><p><strong>Answer:</strong> It is the bounded amount of token-based context that a model can consider for a request. Applications must manage that budget when handling conversation history, retrieved documents and other inputs.</p></div>
+<div class="qa-item"><h3>8. Why do token counts matter in production?</h3><p><strong>Answer:</strong> They affect cost, latency, input limits and how much useful context fits into a request. We should measure token use with a tokenizer or provider counting endpoint appropriate to the target model.</p></div>
+<div class="qa-item"><h3>9. How would you diagnose truncated or missing context in a RAG system?</h3><p><strong>Answer:</strong> Inspect input token counts, system/tool overhead, retrieved-chunk sizes, truncation policy and the model context limit. Log the assembled prompt metadata safely and test whether important evidence remains in the final context.</p></div>
+<div class="qa-item"><h3>10. How should engineers estimate token-based inference cost?</h3><p><strong>Answer:</strong> Separate input, cached input and output token counts when the provider distinguishes them. Multiply actual usage by that model's current unit rates; account for retries, tool calls and any hidden or reasoning tokens reported by the provider.</p></div>
+</div></section><h2>Glossary — key words</h2>
+<p>
+<strong>Token:</strong> A piece of text a model works with: a word, part of a word or punctuation. <strong>Tokenizer:</strong> The model's method for splitting text into tokens. <strong>Subword:</strong> A piece of a longer or rarer word. <strong>Context window:</strong> The maximum number of tokens a model can take into account at once.</p>
+
+<h2>Sources and further reading</h2>
+<ul class="sources"><li><a href="https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens" rel="noopener noreferrer">OpenAI — Understanding and counting tokens</a></li><li><a href="https://platform.openai.com/tokenizer" rel="noopener noreferrer">OpenAI — Interactive Tokenizer</a></li>
+<li>
+<a href="https://huggingface.co/docs/transformers/tokenizer_summary" rel="noopener noreferrer">Hugging Face — Tokenization algorithms (how text is split into subwords)</a>
+</li>
+<li>
+<a href="https://developers.google.com/machine-learning/crash-course/llm" rel="noopener noreferrer">Google Machine Learning Crash Course — LLMs</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/1508.07909" rel="noopener noreferrer">Sennrich, Haddow and Birch (ACL 2016) — Subword units for rare words</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/2005.14165" rel="noopener noreferrer">Brown et al. (2020) — Language Models are Few-Shot Learners</a>
+</li>
+</ul>
+<p class="small">These notes are educational, not a substitute for professional advice. This lesson was prepared as a standalone learner guide; it is not a verbatim transcript of the Reel.</p>
+</article>
+<aside class="sidebar no-print">
+<div class="card">
+<span class="tag">FREE LEARNING NOTES</span>
+<h3>Day 02</h3>
+<p>Read here or save a copy as PDF from your browser.</p>
+<button class="button primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+<p class="small">On mobile, open the browser’s Share or Print option and choose Save as PDF. No account or email needed.</p>
+<a class="nav-link" href="/day/1/">← Day 01</a><br>
+<a class="nav-link" href="/">← All lessons</a>
+</div>
+</aside>
+</div>
+</main>
+<div class="footer">Beyond AI with Laki · Follow @beyondaiwithlaki for Day 3.</div>
+</body>
+</html>
