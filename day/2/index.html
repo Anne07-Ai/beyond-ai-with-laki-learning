@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day 02: What exactly is a token? | Beyond AI with Laki</title>
+<meta name="description" content="Free beginner-friendly notes: what tokens are, how text is split, how ChatGPT uses tokens, and what a context window is.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav>
+<a class="brand" href="/">BEYOND AI WITH LAKI</a>
+<a class="nav-link" href="/">← Library</a>
+</nav>
+<main>
+<div class="note-layout">
+<article class="notes-content" id="notes">
+<div class="eyebrow">30 DAYS OF LLMs · DAY 02</div>
+<h1>What exactly is a token?</h1>
+<p class="lead">The small pieces of text that language models read and write.</p>
+<div class="info">
+<strong>One-minute takeaway:</strong> Language models don't read text word by word the way we do. They work with <strong>tokens</strong>: small pieces of text that can be a whole word, part of a word or a punctuation mark. Tokens are the building blocks that language models use to process and generate text.</div>
+
+<h2>1. Think of building blocks</h2>
+<p>Imagine building something with Lego blocks. An AI model doesn't handle a whole sentence in one go. It works with smaller pieces of text, and those pieces are called <strong>tokens</strong>. This is a <em>simplified analogy</em> to make the idea easier to picture.</p>
+
+<h2>2. An example</h2>
+<p>A tokenizer might split <strong>“I love chocolate”</strong> into three tokens:</p>
+<div class="flow" aria-label="Illustrative split of I love chocolate into three tokens">
+<span class="step">I</span>
+<span class="step">␣love</span>
+<span class="step">␣chocolate</span>
+</div>
+<p>The <strong>␣</strong> marks a space. Many tokenizers keep the space in front of a word as part of the token.</p>
+
+<h2>3. One token isn't always one word</h2>
+<p>Here's the surprising part:</p>
+<ul>
+<li>A <strong>long or less common word</strong> can be split into smaller, more common pieces. For example, <em>annoyingly</em> might become <strong>annoying</strong> + <strong>ly</strong>.</li>
+<li><strong>Punctuation</strong> such as <strong>?</strong> or <strong>.</strong> can be a token of its own.</li>
+<li><strong>The exact split depends on the model's tokenizer.</strong> Different models can split the same text differently.</li>
+</ul>
+<div class="info">
+<strong>Note:</strong> The splits on this page are illustrative. Real splits depend on the tokenizer. Inside the model, each token is stored as a number, not as letters.</div>
+
+<h2>4. Why does this matter?</h2>
+<p>Language models process tokens, not words exactly as we see them. When you ask ChatGPT a question, your text is converted into tokens. The model uses those tokens and the conversation so far to predict what comes next. It keeps generating tokens, one at a time, until it forms a response.</p>
+<div class="flow" aria-label="Simplified process from prompt to reply">
+<span class="step">Your text</span>
+<span class="arrow">→</span>
+<span class="step">Tokens</span>
+<span class="arrow">→</span>
+<span class="step">Context</span>
+<span class="arrow">→</span>
+<span class="step">Next token</span>
+<span class="arrow">→</span>
+<span class="step">Repeat</span>
+<span class="arrow">→</span>
+<span class="step">Reply</span>
+</div>
+<p>Token counts are not word counts. Long words can become several tokens and punctuation can be its own token, so a sentence often has more tokens than words.</p>
+
+<h2>5. The context window: the model's desk</h2>
+<p>Every model has a <strong>context window</strong>: a limit on how many tokens it can work with at once.</p>
+<p>Think of it like a desk. A bigger desk can hold more books and notes while you're working. A bigger context window can hold more information for the model to consider. The size varies from model to model.</p>
+
+<h2 class="pagebreak">Quick quiz</h2>
+<ol class="quiz">
+<li>Is one token always one word?<br>
+<strong>Answer:</strong> No. A token can be a whole word, part of a word or a punctuation mark.</li>
+<li>Who decides how text is split into tokens?<br>
+<strong>Answer:</strong> The model's tokenizer. Different models can split the same text differently.</li>
+<li>What is a context window?<br>
+<strong>Answer:</strong> The limit on how many tokens a model can work with at once, like the size of a desk.</li>
+</ol>
+
+<h2>Key words</h2>
+<p>
+<strong>Token:</strong> A piece of text a model works with: a word, part of a word or punctuation. <strong>Tokenizer:</strong> The model's method for splitting text into tokens. <strong>Subword:</strong> A piece of a longer or rarer word. <strong>Context window:</strong> The maximum number of tokens a model can take into account at once.</p>
+
+<h2>Further reading</h2>
+<ul class="sources">
+<li>
+<a href="https://huggingface.co/docs/transformers/tokenizer_summary" rel="noopener noreferrer">Hugging Face — Tokenization algorithms (how text is split into subwords)</a>
+</li>
+<li>
+<a href="https://developers.google.com/machine-learning/crash-course/llm" rel="noopener noreferrer">Google Machine Learning Crash Course — LLMs</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/1508.07909" rel="noopener noreferrer">Sennrich, Haddow and Birch (ACL 2016) — Subword units for rare words</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/2005.14165" rel="noopener noreferrer">Brown et al. (2020) — Language Models are Few-Shot Learners</a>
+</li>
+</ul>
+<p class="small">These notes are educational, not a substitute for professional advice. This lesson was prepared as a standalone learner guide; it is not a verbatim transcript of the Reel.</p>
+</article>
+<aside class="sidebar no-print">
+<div class="card">
+<span class="tag">FREE LEARNING NOTES</span>
+<h3>Day 02</h3>
+<p>Read here or save a copy as PDF from your browser.</p>
+<button class="button primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+<p class="small">On mobile, open the browser’s Share or Print option and choose Save as PDF. No account or email needed.</p>
+<a class="nav-link" href="/day/1/">← Day 01</a><br>
+<a class="nav-link" href="/">← All lessons</a>
+</div>
+</aside>
+</div>
+</main>
+<div class="footer">Beyond AI with Laki · Follow @beyondaiwithlaki for Day 3.</div>
+</body>
+</html>
