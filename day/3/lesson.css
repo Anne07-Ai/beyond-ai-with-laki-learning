@@ -1,0 +1,16 @@
+/* Day 3 only: preserve the existing shared design and earlier lessons. */
+.notes-content{min-width:0;overflow-wrap:break-word}
+.lesson-toc{display:flex;flex-wrap:wrap;gap:8px 14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
+.lesson-toc strong{flex-basis:100%}
+.semantic-map{display:block;width:100%;height:auto}
+.formula{padding:16px;background:#f4e9f6;border:1px solid var(--line);border-radius:12px;font-family:ui-monospace,monospace;overflow-wrap:anywhere}
+code{font-size:.9em;overflow-wrap:anywhere}
+.table-wrap{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{text-align:left;font-weight:700;margin-bottom:10px}
+th,td{border:1px solid #c8afd7;padding:10px;text-align:left}
+thead{background:#f4e9f6}
+dt{font-weight:750;margin-top:12px}dd{margin-left:0;color:#433b4a}
+[id]{scroll-margin-top:20px}
+@media(max-width:420px){nav{flex-wrap:wrap}.notes-content{padding:20px}.notes-content h1{font-size:34px}.diagram-flow{flex-direction:column;align-items:stretch}.diagram-arrow{text-align:center;transform:rotate(90deg)}.diagram-node{min-width:0}.diagram{margin-inline:0}}
+@media print{@page{size:A4;margin:16mm}.notes-content{overflow:visible}.notes-content h2,.notes-content h3,dt,figcaption{break-after:avoid}.notes-content h1{font-size:30pt}.notes-content h2{font-size:18pt}p,li{orphans:3;widows:3}.semantic-map{max-height:67mm}.diagram-flow{gap:5px}.diagram-node{min-width:85px;padding:8px;font-size:10px}.diagram-node small{font-size:9px}.table-wrap{overflow:visible}tr{break-inside:avoid}.formula,dl{break-inside:auto}.notes-content .sources a{overflow-wrap:anywhere}.sources a::after{content:" (" attr(href) ")";font-size:8pt}.lesson-toc{display:none}}
