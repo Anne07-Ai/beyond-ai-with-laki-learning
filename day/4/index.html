@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 04: Speculative Decoding | Beyond AI with Laki</title><link rel="stylesheet" href="/styles.css"></head>
+<body><nav><a class="brand" href="/">BEYOND AI WITH LAKI</a><a class="nav-link" href="/">← Library</a></nav>
+<main><article class="notes-content"><div class="eyebrow">30 DAYS OF LLMs · DAY 04</div><h1>Speculative Decoding</h1><p class="lead">Why AI writes a secret first draft.</p>
+<p>A smaller model drafts candidate tokens. The main model scores them together, and the algorithm accepts candidates in order until the first rejection. The guide follows the bridge-at-dawn example from the Reel.</p>
+<div class="info"><strong>The midnight check:</strong> If the draft assigns 50% and the main model assigns 30% to the proposed token in the same context, its acceptance chance is min(1, 0.30 ÷ 0.50) = 60%.</div>
+<h2>Inside the four-page guide</h2><ul><li>How softmax converts logits into token probabilities.</li><li>How to calculate acceptance and sample a replacement.</li><li>Why the final distribution matches the main model.</li><li>A worked latency comparison and practice questions.</li></ul>
+<p><a class="button primary" href="./Day4_Speculative_Decoding.pdf" download>Download Day 4 PDF</a></p><p><a href="/day/3/">← Day 03: Embeddings</a></p></article></main></body></html>
