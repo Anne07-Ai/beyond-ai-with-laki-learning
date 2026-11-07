@@ -37,8 +37,10 @@ Our first series, **30 Days of LLMs**, introduces one concept at a time. Each le
 | :---: | --- | --- |
 | **01** | [What is an LLM — and how does ChatGPT work?](./day/1/) | Notes available in this repository |
 | **02** | [What exactly is a token?](./day/2/) | Notes available in this repository |
-| **03** | [What are embeddings?](./day/3/) | Proposed in the Day 3 feature branch; release pending review |
-| **04–30** | More beginner-friendly AI lessons | Planned; released after editorial review |
+| **03** | [What are embeddings?](./day/3/) | Published |
+| **04** | [Speculative decoding](./day/4/) | Published |
+| **05** | [What is a KV cache?](./day/5/) | Prepared for creator review; release after merge and deployment verification |
+| **06–30** | More beginner-friendly AI lessons | Planned; released after editorial review |
 
 **Day 1 covers:** language patterns, a simplified “Twinkle, twinkle…” analogy, tokenisation, next-token generation and why confident AI answers can still be incorrect.
 
@@ -61,9 +63,11 @@ beyond-ai-with-laki-learning/
 │   │   └── index.html   # Day 1 lesson and quiz
 │   ├── 2/
 │   │   └── index.html   # Day 2 lesson and quiz
-│   └── 3/
+│   ├── 3/
 │       ├── index.html   # Embeddings guide, diagrams, quiz and interview Q&A
 │       └── lesson.css   # Scoped Day 3 screen/print styling
+│   ├── 4/              # Speculative decoding lesson and PDF
+│   └── 5/              # KV cache lesson, scoped CSS, print.js and complete PDF
 ├── styles.css           # Responsive design system
 ├── _headers             # Security-related response headers
 └── README.md
@@ -96,17 +100,17 @@ Release workflow:
 4. The existing Cloudflare integration automatically builds/deploys the merge.
 5. Check the deployment result and verify the lesson in a browser. A merged PR alone does not prove successful deployment.
 
-Feature branches may trigger Cloudflare builds too. Inspect check results; a preview build failure must not be described as a successful production deployment. No Cloudflare configuration is changed by the Day 3 lesson PR. Deployment settings are managed by the existing integration, not inferred from a new local configuration file.
+Feature branches may trigger Cloudflare builds too. Inspect check results; a preview build failure must not be described as a successful production deployment. Lesson PRs preserve the existing Cloudflare configuration. Deployment settings are managed by the existing integration, not inferred from a new local configuration file.
 
-The intended Day 3 route is `/day/3/`; it is **not a verified live release until deployment and browser checks succeed**. Days 1 and 2 are existing published lessons according to the project handover.
+Days 1–4 are published. Day 5’s intended route is `/day/5/`; verify the production route and downloadable PDF after its approved merge.
 
 ## 📄 Notes and Instagram delivery
 
 Lessons include browser-based **Print / Save as PDF**. This does not require a separately hosted PDF, an account or an email address.
 
-The selected delivery provider is **Repli**. The intended Day 3 journey after website release is:
+The selected delivery provider is **Repli**. The intended Day 5 journey after website release is:
 
-**Instagram Reel → comment `DAY3` → Repli DM → verified Day 3 learning page**
+**Instagram Reel → comment `DAY5` → Repli DM → verified Day 5 learning page**
 
 Configure and test delivery separately after the website is live. This repository change does not publish a Reel, send DMs or activate automation. Do not claim delivery works without an end-to-end test.
 
@@ -121,9 +125,10 @@ Configure and test delivery separately after the website is live. This repositor
 ## 🧭 Project status
 
 **Days 1 and 2:** existing lesson pages preserved.  
-**Day 3:** comprehensive embeddings guide prepared on a feature branch for review.  
-**Release:** creator approval required before merge; deployment verification follows the merge.  
-**Day 3 coverage:** vectors and embeddings, token versus sentence representations, illustrative semantic maps, search, worked cosine similarity, engineering considerations, glossary, six quiz questions and fourteen interview answers.
+**Days 3 and 4:** published guides.  
+**Day 5:** comprehensive KV cache guide prepared for review, with a downloadable PDF and browser Print / Save as PDF.  
+**Day 5 coverage:** football analogy, Q/K/V, prefill and decode, current-token self-attention, worked softmax and weighted sum, cache memory arithmetic, engineering trade-offs, pseudocode, glossary, eight quiz answers and sixteen interview answers.  
+**Release:** creator approval before merge; check Cloudflare deployment and the live lesson/PDF afterwards. No Instagram publishing or Repli activation is part of this change.
 
 This repository is independent of the private/local AI video-production studio and the creator's personal portfolio.
 
