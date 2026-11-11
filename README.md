@@ -39,8 +39,9 @@ Our first series, **30 Days of LLMs**, introduces one concept at a time. Each le
 | **02** | [What exactly is a token?](./day/2/) | Notes available in this repository |
 | **03** | [What are embeddings?](./day/3/) | Published |
 | **04** | [Speculative decoding](./day/4/) | Published |
-| **05** | [What is a KV cache?](./day/5/) | Prepared for creator review; release after merge and deployment verification |
-| **06–30** | More beginner-friendly AI lessons | Planned; released after editorial review |
+| **05** | [What is a KV cache?](./day/5/) | Published |
+| **06** | [How does AI remember you?](./day/6/) | Guide and PDF |
+| **07–30** | More beginner-friendly AI lessons | Planned |
 
 **Day 1 covers:** language patterns, a simplified “Twinkle, twinkle…” analogy, tokenisation, next-token generation and why confident AI answers can still be incorrect.
 
@@ -67,7 +68,8 @@ beyond-ai-with-laki-learning/
 │       ├── index.html   # Embeddings guide, diagrams, quiz and interview Q&A
 │       └── lesson.css   # Scoped Day 3 screen/print styling
 │   ├── 4/              # Speculative decoding lesson and PDF
-│   └── 5/              # KV cache lesson, scoped CSS, print.js and complete PDF
+│   ├── 5/              # KV cache lesson, scoped CSS, print.js and complete PDF
+│   └── 6/              # LLM memory lesson and PDF
 ├── styles.css           # Responsive design system
 ├── _headers             # Security-related response headers
 └── README.md
@@ -102,15 +104,15 @@ Release workflow:
 
 Feature branches may trigger Cloudflare builds too. Inspect check results; a preview build failure must not be described as a successful production deployment. Lesson PRs preserve the existing Cloudflare configuration. Deployment settings are managed by the existing integration, not inferred from a new local configuration file.
 
-Days 1–4 are published. Day 5’s intended route is `/day/5/`; verify the production route and downloadable PDF after its approved merge.
+Days 1–5 are published. Day 6’s intended route is `/day/6/`; verify the production route and downloadable PDF after its approved merge.
 
 ## 📄 Notes and Instagram delivery
 
 Lessons include browser-based **Print / Save as PDF**. This does not require a separately hosted PDF, an account or an email address.
 
-The selected delivery provider is **Repli**. The intended Day 5 journey after website release is:
+The selected delivery provider is **Repli**. The intended Day 6 journey after website release is:
 
-**Instagram Reel → comment `DAY5` → Repli DM → verified Day 5 learning page**
+**Instagram Reel → comment `DAY6` → Repli DM → verified Day 6 learning page**
 
 Configure and test delivery separately after the website is live. This repository change does not publish a Reel, send DMs or activate automation. Do not claim delivery works without an end-to-end test.
 
